@@ -1,15 +1,29 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
+import { useDispatch, useSelector } from 'react-redux';
+import { updateUser, setIsEditing } from '../../redux/userSlice';
+import Form from '../Form/Form';
 
-export function UserProfileDisplay() {
-  const username = useSelector((state: RootState) => state.user.username);
+export function UserProfile() {
+  const dispatch = useDispatch();
+  const { username, isEditing } = useSelector((state: RootState) => state.user);
+
+  function handleEditForm() {
+    dispatch(setIsEditing(true));
+  }
 
   return (
     <div>
-      <p>Username: {username}</p>
+      {isEditing ? (
+        <Form />
+      ) : (
+        <div>
+          <p>Username: {username}</p>
+          <button onClick={handleEditForm}>Edit</button>
+        </div>
+      )}
     </div>
   );
 }
 
-export default UserProfileDisplay;
+export default UserProfile;

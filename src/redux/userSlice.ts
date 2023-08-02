@@ -1,9 +1,9 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import UserState from './types';
 
-
 const initialState: UserState = {
-  username: '',
+  username: localStorage.getItem('username') || '',
+  isEditing: !localStorage.getItem('username'),
 };
 
 const userSlice = createSlice({
@@ -12,9 +12,13 @@ const userSlice = createSlice({
   reducers: {
     updateUser: (state, action: PayloadAction<string>) => {
       state.username = action.payload;
+      localStorage.setItem('username', action.payload);
+    },
+    setIsEditing: (state, action: PayloadAction<boolean>) => {
+      state.isEditing = action.payload;
     },
   },
 });
 
-export const { updateUser } = userSlice.actions;
+export const { updateUser, setIsEditing } = userSlice.actions;
 export default userSlice.reducer;
