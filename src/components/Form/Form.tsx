@@ -1,13 +1,13 @@
 import { useFormik } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
-import { updateUser, setIsEditing } from '../../redux/userSlice';
-import { RootState } from '../../redux/store';
+import { updateUser } from '../../redux/userSlice';
 import './Form.scss';
 import { useCreateFormValidation } from './hooks/useCreateFormValidation';
+import { userNameSelector } from '../../redux/userSelectors';
 
 export function Form() {
   const dispatch = useDispatch();
-  const { username } = useSelector((state: RootState) => state.user);
+  const { username } = useSelector(userNameSelector);
   const validationSchema = useCreateFormValidation();
 
   const { values, handleChange, handleBlur, handleSubmit, touched, errors } = useFormik({
@@ -17,7 +17,7 @@ export function Form() {
     validationSchema: validationSchema,
     onSubmit: values => {
       dispatch(updateUser(values.username));
-      dispatch(setIsEditing(false));
+      // localStorage.setItem('username', values.username);
     },
   });
 
