@@ -15,7 +15,6 @@ export function Form() {
       username: username,
     },
     validationSchema: validationSchema,
-    validateOnChange: false,
     onSubmit: values => {
       dispatch(updateUser(values.username));
       dispatch(setIsEditing(false));
