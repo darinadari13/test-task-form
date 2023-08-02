@@ -1,5 +1,5 @@
 import { RootState } from './store';
 
 export const userNameSelector = (state: RootState) => {
-  return state.user;
+  return state.user.username;
 };

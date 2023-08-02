@@ -1,7 +1,8 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import UserState from './types';
+import { USERNAME_KEY_FOR_LS } from '../constants';
 
-const userNameFromLS = localStorage.getItem('username');
+const userNameFromLS = localStorage.getItem(USERNAME_KEY_FOR_LS);
 
 const initialState: UserState = {
   username: userNameFromLS || '',
@@ -23,4 +24,4 @@ const userSlice = createSlice({
 });
 
 export const { updateUser, setIsEditing } = userSlice.actions;
-export default userSlice.reducer;
+export default userSlice;

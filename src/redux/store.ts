@@ -1,10 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit';
-import userReducer from './userSlice';
+import userSlice from './userSlice';
+import { saveUserToLocalStorageMiddleware } from './userMiddlewares';
 
 const store = configureStore({
   reducer: {
-    user: userReducer,
+    user: userSlice.reducer,
   },
+  middleware: getDefaultMiddleware => getDefaultMiddleware().concat(saveUserToLocalStorageMiddleware),
 });
 
 export type RootState = ReturnType<typeof store.getState>;

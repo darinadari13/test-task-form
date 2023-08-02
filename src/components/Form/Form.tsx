@@ -7,17 +7,16 @@ import { userNameSelector } from '../../redux/userSelectors';
 
 export function Form() {
   const dispatch = useDispatch();
-  const { username } = useSelector(userNameSelector);
+  const username = useSelector(userNameSelector);
   const validationSchema = useCreateFormValidation();
 
   const { values, handleChange, handleBlur, handleSubmit, touched, errors } = useFormik({
     initialValues: {
-      username: username,
+      username,
     },
     validationSchema: validationSchema,
     onSubmit: values => {
       dispatch(updateUser(values.username));
-      // localStorage.setItem('username', values.username);
     },
   });
 
