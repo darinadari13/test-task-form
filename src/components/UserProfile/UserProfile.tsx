@@ -3,6 +3,7 @@ import { RootState } from '../../redux/store';
 import { useDispatch, useSelector } from 'react-redux';
 import { setIsEditing } from '../../redux/userSlice';
 import Form from '../Form/Form';
+import './UserProfile.scss';
 
 export function UserProfile() {
   const dispatch = useDispatch();
@@ -13,13 +14,15 @@ export function UserProfile() {
   }
 
   return (
-    <div>
+    <div className='profile'>
       {isEditing ? (
         <Form />
       ) : (
-        <div>
+        <div className='profile-data-container'>
           <p>Username: {username}</p>
-          <button onClick={handleEditForm}>Edit</button>
+          <button className='profile-editBtn' onClick={handleEditForm}>
+            Edit
+          </button>
         </div>
       )}
     </div>

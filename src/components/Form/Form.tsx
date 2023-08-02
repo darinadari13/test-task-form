@@ -14,7 +14,7 @@ export function Form() {
       username: username,
     },
     validationSchema: object({
-      username: string().required('Required'),
+      username: string().required('Required').min(2).max(30),
     }),
     validateOnChange: false,
     onSubmit: values => {
@@ -30,11 +30,12 @@ export function Form() {
         type='text'
         name='username'
         autoComplete='off'
+        placeholder='Enter your username'
         value={values.username}
         onChange={handleChange}
         onBlur={handleBlur}
       />
-      {touched.username && errors.username ? <div>{errors.username}</div> : null}
+      {touched.username && errors.username ? <div className='form-error'>{errors.username}</div> : null}
       <button type='submit' className='form-submitBtn'>
         Save
       </button>

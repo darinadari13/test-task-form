@@ -1,0 +1,16 @@
+.profile {
+  .profile-data-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+  .profile-editBtn {
+    background: #47cfde;
+    border: 1px solid #47cfde;
+    border-radius: 20px;
+    color: #f2f3f7;
+    margin: 10px;
+    cursor: pointer;
+  }
+}
