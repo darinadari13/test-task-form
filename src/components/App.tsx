@@ -1,10 +1,12 @@
 import React from 'react';
 import './App.css';
+import Form from './Form/Form';
 
 function App() {
   return (
     <div className="App">
-  
+    <h1>User Profile App</h1>
+    <Form/>
     </div>
   );
 }
