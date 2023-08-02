@@ -1,21 +1,20 @@
 import { useFormik } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
 import { updateUser, setIsEditing } from '../../redux/userSlice';
-import { object, string } from 'yup';
 import { RootState } from '../../redux/store';
 import './Form.scss';
+import { useCreateFormValidation } from './hooks/useCreateFormValidation';
 
 export function Form() {
   const dispatch = useDispatch();
   const { username } = useSelector((state: RootState) => state.user);
+  const validationSchema = useCreateFormValidation();
 
   const { values, handleChange, handleBlur, handleSubmit, touched, errors } = useFormik({
     initialValues: {
       username: username,
     },
-    validationSchema: object({
-      username: string().required('Required').min(2).max(30),
-    }),
+    validationSchema: validationSchema,
     validateOnChange: false,
     onSubmit: values => {
       dispatch(updateUser(values.username));
