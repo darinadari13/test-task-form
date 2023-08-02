@@ -1,7 +1,7 @@
 import React from 'react';
 import { RootState } from '../../redux/store';
 import { useDispatch, useSelector } from 'react-redux';
-import { updateUser, setIsEditing } from '../../redux/userSlice';
+import { setIsEditing } from '../../redux/userSlice';
 import Form from '../Form/Form';
 
 export function UserProfile() {

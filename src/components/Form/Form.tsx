@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { updateUser, setIsEditing } from '../../redux/userSlice';
 import { object, string } from 'yup';
 import { RootState } from '../../redux/store';
-import FormProps from './types';
+import './Form.scss';
 
 export function Form() {
   const dispatch = useDispatch();
@@ -16,6 +16,7 @@ export function Form() {
     validationSchema: object({
       username: string().required('Required'),
     }),
+    validateOnChange: false,
     onSubmit: values => {
       dispatch(updateUser(values.username));
       dispatch(setIsEditing(false));
@@ -23,10 +24,20 @@ export function Form() {
   });
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input type='text' name='username' value={values.username} onChange={handleChange} onBlur={handleBlur} />
+    <form onSubmit={handleSubmit} className='form'>
+      <input
+        className='form-input'
+        type='text'
+        name='username'
+        autoComplete='off'
+        value={values.username}
+        onChange={handleChange}
+        onBlur={handleBlur}
+      />
       {touched.username && errors.username ? <div>{errors.username}</div> : null}
-      <button type='submit'>Save</button>
+      <button type='submit' className='form-submitBtn'>
+        Save
+      </button>
     </form>
   );
 }
